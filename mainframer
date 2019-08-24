@@ -100,8 +100,11 @@ function syncBeforeRemoteCommand {
 		COMMAND+="--exclude-from='$LOCAL_IGNORE_FILE' "
 	fi
 
+  COMMAND+="--progress -v "
+
 	COMMAND+="--rsh ssh ./ $REMOTE_MACHINE:'$PROJECT_DIR_ON_REMOTE_MACHINE'"
 
+  echo "$COMMAND"
 	eval "$COMMAND"
 
 	endTime="$(date +%s)"
@@ -149,6 +152,8 @@ function syncAfterRemoteCommand {
 	fi
 
 	COMMAND+="--rsh ssh $REMOTE_MACHINE:'$PROJECT_DIR_ON_REMOTE_MACHINE'/ ./"
+
+  echo "$COMMAND"
 	eval "$COMMAND"
 
 	endTime="$(date +%s)"
