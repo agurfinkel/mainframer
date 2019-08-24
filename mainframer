@@ -23,7 +23,6 @@ START_TIME="$(date +%s)"
 
 PROJECT_DIR="$(pwd)"
 PROJECT_DIR_NAME="$( basename "$PROJECT_DIR" )"
-PROJECT_DIR_ON_REMOTE_MACHINE="~/mainframer/$PROJECT_DIR_NAME"
 
 CONFIG_DIR="$PROJECT_DIR/.mainframer"
 CONFIG_FILE="$CONFIG_DIR/config"
@@ -38,6 +37,7 @@ function readConfigProperty {
 REMOTE_MACHINE_CONFIG_PROPERTY="remote_machine"
 LOCAL_COMPRESS_LEVEL_CONFIG_PROPERTY="local_compression_level"
 REMOTE_COMPRESS_LEVEL_CONFIG_PROPERTY="remote_compression_level"
+REMOTE_PROJECT_DIR_CONFIG_PROPERTY="remote_dir"
 
 if [ ! -f "$CONFIG_FILE" ]; then
 	echo "Please create and fill $CONFIG_FILE."
@@ -47,6 +47,8 @@ fi
 REMOTE_MACHINE=$(readConfigProperty "$REMOTE_MACHINE_CONFIG_PROPERTY")
 LOCAL_COMPRESS_LEVEL=$(readConfigProperty "$LOCAL_COMPRESS_LEVEL_CONFIG_PROPERTY")
 REMOTE_COMPRESS_LEVEL=$(readConfigProperty "$REMOTE_COMPRESS_LEVEL_CONFIG_PROPERTY")
+PROJECT_DIR_ON_REMOTE_MACHINE=$(readConfigProperty $REMOTE_PROJECT_DIR_CONFIG_PROPERTY)
+
 
 if [ -z "$REMOTE_MACHINE" ]; then
 	echo "Please specify \"$REMOTE_MACHINE_CONFIG_PROPERTY\" in $CONFIG_FILE."
