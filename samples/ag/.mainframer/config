@@ -1,0 +1,4 @@
+remote_dir=/ag/extavy2
+remote_machine=mymble
+local_compression_level=1
+remote_compression_level=1
